@@ -15,6 +15,16 @@ export function wildEncounter(pokemonArray) {
     return homie;
 }
 
-// export function journalLog(array) {
-//     const 
-// }
+export function encounteredLog(id, array) {
+    const seenPokemon = getPokemonById(array, id);
+    if (seenPokemon._id === undefined) {
+        const newEncounter = {
+            _id: id,
+            encounters: 1,
+            caught: 0
+        };
+        array.push(newEncounter);
+    } else { 
+        seenPokemon.encounters++;
+    }
+}
