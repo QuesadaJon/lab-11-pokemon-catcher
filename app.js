@@ -57,7 +57,7 @@ aWildPokemonHasAppeared();
 
 function encounteredLog(id) {
     const seenPokemon = getPokemonById(encounteredPoke, id);
-    if (seenPokemon === undefined) {
+    if (seenPokemon._id === undefined) {
         const newEncounter = {
             _id: id,
             encounters: 1,
