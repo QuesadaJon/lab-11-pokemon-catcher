@@ -1,11 +1,10 @@
 export function getPokemonById(pokemonArray, id) {
     let pokeMatch;
     
-    pokemonArray.forEach(pokemonArray => {
-        if (id === pokemonArray.id) {
-            pokeMatch = pokemonArray;
-        }
-    });
+    for (let i = 0; i < pokemonArray.length; i++) {
+        if (id === pokemonArray[i]._id) return pokemonArray[i];
+    }
+    pokeMatch = pokemonArray;
 
     return pokeMatch;
 }
@@ -15,3 +14,7 @@ export function wildEncounter(pokemonArray) {
     const homie = pokemonArray[generatePokemon];
     return homie;
 }
+
+// export function journalLog(array) {
+//     const 
+// }
