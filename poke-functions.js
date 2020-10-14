@@ -1,20 +1,17 @@
-export function getPokemonById(pokemon, id) {
+export function getPokemonById(pokemonArray, id) {
     let pokeMatch;
-    pokemon.forEach(pokemon => {
-        if (id === pokemon.id) {
-            pokeMatch = pokemon;
+    
+    pokemonArray.forEach(pokemonArray => {
+        if (id === pokemonArray.id) {
+            pokeMatch = pokemonArray;
         }
     });
 
     return pokeMatch;
 }
 
-export function getRandomPokemon(pokemon) {
-    const randomPokemonIndex = Math.floor(Math.random() * pokemon.length);
-
-    return pokemon[randomPokemonIndex];
-}
-
-export function anyPokemon(pokemon) {
-    return pokemon.length;
+export function wildEncounter(pokemonArray) {
+    const generatePokemon = Math.floor(Math.random() * pokemonArray.length);
+    const homie = pokemonArray[generatePokemon];
+    return homie;
 }
