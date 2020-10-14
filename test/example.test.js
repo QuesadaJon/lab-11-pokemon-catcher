@@ -1,9 +1,10 @@
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
+import { } from './poke-function.js';
 
 const test = QUnit.test;
 
-test('time to test a function', (expect) => {
+test('should take in a pokemon array and return a random number ', (expect) => {
     //Arrange
     // Set up your arguments and expectations
     const expected = true;
