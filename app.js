@@ -1,5 +1,5 @@
 import { pokeData } from './api.js';
-import { getPokemonById, wildEncounter, encounteredLog, caughtLog, insertLocalStorage, getFromLocalStorage } from './poke-functions.js';
+import { wildEncounter, encounteredLog, caughtLog, insertLocalStorage } from './poke-functions.js';
 // import functions and grab DOM elements
 const pokemonRadioTag1 = document.getElementById('radio-one');
 const pokemonRadioTag2 = document.getElementById('radio-two');
@@ -7,11 +7,11 @@ const pokemonRadioTag3 = document.getElementById('radio-three');
 const pokemonImageTag1 = document.getElementById('img-one');
 const pokemonImageTag2 = document.getElementById('img-two');
 const pokemonImageTag3 = document.getElementById('img-three');
-const result = document.querySelector('tbody');
+const results = document.querySelector('p');
 const sprites = document.querySelector('sprites');
 // initialize state
 
-let battles = 1; 
+let battles = 9; 
 let radios = [pokemonRadioTag1, pokemonRadioTag2, pokemonRadioTag3];
 let imgs = [pokemonImageTag1, pokemonImageTag2, pokemonImageTag3];
 let adventure = [];
@@ -50,11 +50,8 @@ function aWildPokemonHasAppeared() {
         for (let i = 0; i < imgs.length; i++) {
             imgs[i].hidden = true;
         } 
-        // result.hidden = false;
-        // for (let i = 0; i < journeyStats.length; i++) {
-        //     const game = journeyStats[i];
-        //     const tr = renderArray(game);
-        //     result.appendChild(tr);
+        // {
+        //     results.hidden = false;
         // }
     }
 }
