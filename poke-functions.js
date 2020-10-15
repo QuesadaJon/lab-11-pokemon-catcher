@@ -1,4 +1,3 @@
-import { pokeData } from './api.js';
 export function getPokemonById(pokemonArray, id) {
     for (let i = 0; i < pokemonArray.length; i++) {
         if (id === pokemonArray[i].id) return pokemonArray[i];
@@ -15,7 +14,7 @@ export function wildEncounter(pokemonArray) {
 
 export function encounteredLog(wildEncounter, localArray) {
 
-    const adventureLog = getPokemonById(localArray, Number(wildEncounter));
+    const adventureLog = getPokemonById(localArray, Number(wildEncounter.id));
     
 
     if (!adventureLog) {
