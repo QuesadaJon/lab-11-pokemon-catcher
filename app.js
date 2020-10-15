@@ -8,10 +8,9 @@ const pokemonImageTag1 = document.getElementById('img-one');
 const pokemonImageTag2 = document.getElementById('img-two');
 const pokemonImageTag3 = document.getElementById('img-three');
 const results = document.querySelector('p');
-const sprites = document.querySelector('sprites');
 // initialize state
 
-let battles = 9; 
+let battles = 1; 
 let radios = [pokemonRadioTag1, pokemonRadioTag2, pokemonRadioTag3];
 let imgs = [pokemonImageTag1, pokemonImageTag2, pokemonImageTag3];
 let adventure = [];
