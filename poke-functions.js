@@ -1,12 +1,8 @@
+import { pokeData } from './api.js';
 export function getPokemonById(pokemonArray, id) {
-    let pokeMatch;
-    
     for (let i = 0; i < pokemonArray.length; i++) {
-        if (id === pokemonArray[i]._id) return pokemonArray[i];
+        if (id === pokemonArray[i].id) return pokemonArray[i];
     }
-    pokeMatch = pokemonArray;
-
-    return pokeMatch;
 }
 
 export function wildEncounter(pokemonArray) {
@@ -15,16 +11,57 @@ export function wildEncounter(pokemonArray) {
     return homie;
 }
 
-export function encounteredLog(id, array) {
-    const seenPokemon = getPokemonById(array, id);
-    if (seenPokemon._id === undefined) {
+
+
+export function encounteredLog(wildEncounter, localArray) {
+
+    const adventureLog = getPokemonById(localArray, Number(wildEncounter));
+    
+
+    if (!adventureLog) {
         const newEncounter = {
-            _id: id,
+            id: Number(wildEncounter.id),
+            name: wildEncounter.pokemon,
             encounters: 1,
             caught: 0
         };
-        array.push(newEncounter);
+        localArray.push(newEncounter);
     } else { 
-        seenPokemon.encounters++;
+
+        adventureLog.encounters++;
     }
+
+
+}
+
+export function caughtLog(caughtPokemon, localArray) {
+    const adventureLog = getPokemonById(localArray, Number(caughtPokemon));
+    
+    if (!adventureLog) {
+        const newEncounter = {
+            id: Number(caughtPokemon.id),
+            name: caughtPokemon.pokemon,
+            encounters: 1,
+            caught: 1
+        };
+        localArray.push(newEncounter);
+    } else { 
+
+        adventureLog.caught++;
+    }
+}
+
+export function insertLocalStorage(key, value) {
+
+    const stringyItem = JSON.stringify(value);
+
+    localStorage.setItem(key, stringyItem);
+
+    return value;
+}
+
+export function getFromLocalStorage(key) {
+    const item = localStorage.getItem(key);
+
+    return JSON.parse(item);
 }
