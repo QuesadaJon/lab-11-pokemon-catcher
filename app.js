@@ -1,5 +1,5 @@
 import { pokeData } from './api.js';
-import { getPokemonById, wildEncounter } from './poke-functions.js';
+import { wildEncounter, encounteredLog, caughtLog, insertLocalStorage } from './poke-functions.js';
 // import functions and grab DOM elements
 const pokemonRadioTag1 = document.getElementById('radio-one');
 const pokemonRadioTag2 = document.getElementById('radio-two');
@@ -7,66 +7,75 @@ const pokemonRadioTag3 = document.getElementById('radio-three');
 const pokemonImageTag1 = document.getElementById('img-one');
 const pokemonImageTag2 = document.getElementById('img-two');
 const pokemonImageTag3 = document.getElementById('img-three');
-const result = document.querySelector('result');
+const results = document.querySelector('p');
 const sprites = document.querySelector('sprites');
 // initialize state
 
-let battles = 0; 
-let encounteredPoke = [];
+let battles = 9; 
+let radios = [pokemonRadioTag1, pokemonRadioTag2, pokemonRadioTag3];
+let imgs = [pokemonImageTag1, pokemonImageTag2, pokemonImageTag3];
+let adventure = [];
 
 // set event listeners to update state and DOM
 
 // My next goal is to store all the first encountered Pokemon in local storage tracking the 1) Pokemon 2) times encountered and 3) times captured
 function aWildPokemonHasAppeared() {
-    if (battles >= 10);
-    let wildPokemon1 = wildEncounter(pokeData);
-    let wildPokemon2 = wildEncounter(pokeData);
-    let wildPokemon3 = wildEncounter(pokeData);
-    while (wildPokemon1._id === wildPokemon2._id || wildPokemon1._id === wildPokemon3._id || wildPokemon2._id === wildPokemon3._id) {       
-        wildPokemon2 = wildEncounter(pokeData);
-        wildPokemon3 = wildEncounter(pokeData);
-    }   
+    if (battles <= 10) {
+        let wildPokemon1 = wildEncounter(pokeData);
+        let wildPokemon2 = wildEncounter(pokeData);
+        let wildPokemon3 = wildEncounter(pokeData);
+        while (wildPokemon1.id === wildPokemon2.id || wildPokemon1.id === wildPokemon3.id || wildPokemon2.id === wildPokemon3.id) {       
+            wildPokemon2 = wildEncounter(pokeData);
+            wildPokemon3 = wildEncounter(pokeData);
+        }   
  
-    pokemonRadioTag1.value = getPokemonById(wildPokemon1._id, pokeData);
-    pokemonImageTag1.src = wildPokemon1.url_image;
-    pokemonRadioTag2.value = wildPokemon2.pokemon;
-    pokemonImageTag2.src = wildPokemon2.url_image;
-    pokemonRadioTag3.value = wildPokemon3.pokemon;
-    pokemonImageTag3.src = wildPokemon3.url_image;
+        pokemonRadioTag1.value = wildPokemon1.id;
+        pokemonImageTag1.src = wildPokemon1.url_image;
+        pokemonRadioTag2.value = wildPokemon2.id;
+        pokemonImageTag2.src = wildPokemon2.url_image;
+        pokemonRadioTag3.value = wildPokemon3.id;
+        pokemonImageTag3.src = wildPokemon3.url_image;
 
-    // caughtLog(wildPokemon1._id);
-    encounteredLog(wildPokemon1._id);
-    encounteredLog(wildPokemon2._id);
-    encounteredLog(wildPokemon3._id);
-    battles++;
-
+        encounteredLog(wildPokemon1, adventure);
+        encounteredLog(wildPokemon2, adventure);
+        encounteredLog(wildPokemon3, adventure);
+        insertLocalStorage('POKEMON', adventure);
+    
+    } else {
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].hidden = true;
+            radios[i].disabled = true;
+           
+        }
+        for (let i = 0; i < imgs.length; i++) {
+            imgs[i].hidden = true;
+        } 
+        // {
+        //     results.hidden = false;
+        // }
+    }
 }
 
 aWildPokemonHasAppeared();
 
-// function caughtLog(id) {
-//     if (localStorage.getItem('caught') === null) {
-//         const newCatch = {
-//             _id: id,
-//             encounters: 0,
-//             caught: 1
-//         };
-//         encounteredPoke.push(newCatch);
-//     }
-// }
+for (let i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('click', (e) =>
+    
+    { caughtLog(Number(e.target.value), adventure);
 
-function encounteredLog(id) {
-    const seenPokemon = getPokemonById(encounteredPoke, id);
-    if (seenPokemon === undefined) {
-        const newEncounter = {
-            _id: id,
-            encounters: 1,
-            caught: 0
-        };
-        encounteredPoke.push(newEncounter);
-    } else { 
-        seenPokemon.encounters++;
-    }
+        aWildPokemonHasAppeared();
+
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].checked = false;
+
+        }
+        battles++;
+
+    });
 }
 
-console.log(battles, encounteredPoke);
+
+
+
+
+
