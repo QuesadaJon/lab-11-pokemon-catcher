@@ -96,7 +96,7 @@ new Chart(ctx, { //eslint-disable-line
     data: {
         labels: pokeLogName,
         datasets: [{
-            label: 'pokemon encountered and caught',
+            label: 'pokemon encountered',
             data: pokeLogEncountered,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
