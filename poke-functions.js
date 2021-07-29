@@ -10,8 +10,6 @@ export function wildEncounter(pokemonArray) {
     return homie;
 }
 
-
-
 export function encounteredLog(wildEncounter, localArray) {
 
     const adventureLog = getPokemonById(localArray, Number(wildEncounter.id));

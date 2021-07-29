@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/home.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-    <title>Document</title>
+    <title>Pokemon Catcher</title>
 </head>
 
 <body>
@@ -18,26 +18,26 @@
         Gotta Catch 'Em All!
     </header>
     <main>
-        <section class="pokemon-selection">
-            <div class="radio-inputs">
-                <label>
-                    <input type="radio" name="pokemon" value='' id='radio-one'>
-                    <img src='' id="img-one"/>
-                </label>
-                <label>
-                    <input type="radio" name="pokemon" value="" id='radio-two'>
-                    <img src="" id="img-two"/>
-                </label>
-                <label>
-                    <input type="radio" name="pokemon" value="" id="radio-three">
-                    <img src="" id="img-three"/>
-                </label>
-            </div>
-            <canvas id="my-chart" width="400" height="400" class="chart"></canvas>
-        </section>
+        <div class="pokemon-selection">
+          <label>
+              <h1 id="pokemon-name-one"></h1>
+              <input type="radio" name="pokemon" value="" id="radio-one">
+              <img src="" id="img-one"/>
+          </label>
+          <label>
+              <h1 id="pokemon-name-two"></h1>
+              <input type="radio" name="pokemon" value="" id="radio-two">
+              <img src="" id="img-two"/>
+          </label>
+          <label>
+              <h1 id="pokemon-name-three"></h1>
+              <input type="radio" name="pokemon" value="" id="radio-three">
+              <img src="" id="img-three"/>
+          </label>
+          </div>
+          <canvas id="my-chart" width="400" height="400" class="chart"></canvas>
     </main>
     <footer>
-        <div class="copy gutter-right">&copy; 2020 Alchemy Code Lab</div>
     </footer>
 
     <script type="module" src="app.js"></script>

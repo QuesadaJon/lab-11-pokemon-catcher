@@ -1,1 +1,5 @@
 /* add home page styles here */
+pokemon-selection {
+  display: flex;
+  flex-direction: row;
+}
